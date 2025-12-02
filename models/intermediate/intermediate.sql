@@ -1,0 +1,1 @@
+SELECT * FROM {{ ref('stg_lewagonxlecollectionist__Lead_Scoring') }}
