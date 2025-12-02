@@ -1,0 +1,11 @@
+
+version: 2
+
+sources:
+  - name: lewagonxlecollectionist
+    tables:
+      - name: Indicatif
+      - name: Keyword
+      - name: Lead_Scoring
+    
+
