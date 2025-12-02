@@ -1,60 +1,50 @@
-with 
-
-source as (
-
+with source as (
     select * from {{ source('lewagonxlecollectionist', 'Lead_Scoring') }}
-
 ),
-
 renamed as (
-
     select
-        deal_id_,
-        contact_id,
-        deal___client_contract_email___sha256,
-        deal___deal_b2b2c,
-        deal___deal_event,
-        deal___static_segmentation_prospects_mkt,
-        contact___create_date___monthly,
-        contact___count_lc_sales_deals,
-        contact___lc_number_of_primary,
-        contact___m_a_import,
-        contact___ip_country_code,
-        contact___country_region,
-        contact___city,
-        phone_number,
-        contact___preferred_language,
-        deal___source,
-        deal___app_inquiry,
-        deal___static_latest_source,
-        deal___deal_macro_source,
-        deal___destination_inquiry,
-        deal___final_booked_destination,
-        deal___option_inquiry,
-        deal___requested_houses,
-        deal___final_commission_ht,
-        deal___partner_s_commission,
-        deal___budget,
-        deal___budget_per_night,
-        deal___deal_stage_macro,
-        deal___deal_stage,
-        deal___lost_reason,
-        deal___number_of_sales_activities,
-        deal___create_date___monthly,
-        deal___close_date___monthly,
-        deal___client_rental_amount,
-        deal___time_to_reach_out,
-        deal___days_to_close,
-        deal___inquiry_check_in_date___monthly,
-        deal___inquiry_check_out_date___monthly,
-        deal___number_of_nights,
-        deal___booking_window_inquiry,
-        deal___final_check_in_date___monthly,
-        deal___final_check_out_date___monthly,
-        deal___stay_duration
-
+        `deal id ` AS  id,
+        `contact id` AS contact_id,
+        `deal - client contract email - sha256` AS contract_email,
+        `deal - deal b2b2c` AS b2b2c,
+        `deal - deal event` AS event,
+        `deal - static segmentation prospects mkt` AS segmentation_mkt,
+        `contact - create date - monthly` AS contact_created_date,
+        `contact - count lc sales deals` AS count_sales_deals,
+        `contact - lc number of primary` AS existing_contract,
+        `contact - m&a import` AS m_a,
+        `contact - ip country code` as ip_country_code,
+        `contact - countryregion` as country_region,
+        `contact - city` as city,
+        `phone number` as phone_number,
+        `deal - source` as source,
+        `deal - app inquiry` as app,
+        `deal - static latest source` as source_mkt,
+        `deal - deal macro source` as macro_source,
+        `deal - destination inquiry` as destination_inquiry,
+        `deal - final booked destination` as final_booked_destination,
+        `deal - option inquiry` as option,
+        `deal - requested houses` as requested_houses,
+        `deal - final commission ht` as commission,
+        `deal - partner's commission` AS partner_commission,
+        `deal - budget` as budget,
+        `deal - budget per night` as budget_per_night,
+        `deal - deal stage macro` as win_lost,
+        `deal - deal stage` as deal_stage,
+        `deal - lost reason` as lost_reason,
+        `deal - number of sales activities` as nb_sales_activities,
+        `deal - create date - monthly` as deal_created_date,
+        `deal - close date - monthly` as deal_closed_date,
+        `deal - client rental amount` as client_rental_amount,
+        `deal - time to reach out` as time_to_reach_out,
+        `deal - days to close` as days_to_close,
+        `deal - inquiry check-in date - monthly` as inquiry_check_in_date,
+        `deal - inquiry check-out date - monthly` as inquiry_check_out_date,
+        `deal - number of nights` as nb_nights,
+        `deal - booking window inquiry` as booking_window_inquiry,
+        `deal - final check-in date - monthly` as final_check_in_date,
+        `deal - final check-out date - monthly` as final_check_out_date,
+        `deal - stay duration` as stay_duration
     from source
-
 )
-
 select * from renamed
