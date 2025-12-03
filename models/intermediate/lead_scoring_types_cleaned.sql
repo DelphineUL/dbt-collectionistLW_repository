@@ -6,8 +6,8 @@ renamed as (
         `deal id ` AS  id,
         `contact id` AS contact_id,
         `deal - client contract email - sha256` AS contract_email,
-        `deal - deal b2b2c` AS b2b2c,
-        `deal - deal event` AS event,
+        `deal - deal b2b2c` AS b2b2c_lead,
+        `deal - deal event` AS event_lead,
         `deal - static segmentation prospects mkt` AS segmentation_mkt,
         `contact - create date - monthly` AS contact_created_date,
         `contact - count lc sales deals` AS count_sales_deals,
@@ -23,7 +23,7 @@ renamed as (
         `deal - deal macro source` as macro_source,
         `deal - destination inquiry` as destination_inquiry,
         `deal - final booked destination` as final_booked_destination,
-        `deal - option inquiry` as option,
+        `deal - option inquiry` as option_selected,
         `deal - requested houses` as requested_houses,
         
         -- Nettoyage et conversion en FLOAT (Commission)
