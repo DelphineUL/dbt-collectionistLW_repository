@@ -21,3 +21,4 @@ SELECT
                              -- Le 5ème élément (index 9) de l'array
     SPLIT(destination_inquiry, ';')[SAFE_OFFSET(9)] AS J
 FROM {{ ref('lead_scoring_types_cleaned') }}
+WHERE destination_inquiry IS NOT NULL
