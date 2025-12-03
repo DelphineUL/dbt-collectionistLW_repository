@@ -1,1 +1,0 @@
-select * from stg_lewagonxlecollectionist__Lead_Scoring 
