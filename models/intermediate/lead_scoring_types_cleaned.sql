@@ -21,6 +21,11 @@ renamed as (
 
         -- Extraction du pays depuis le numéro de téléphone (Liste étendue ~170 pays)
         CASE
+            -- === ZONE 3 & 4: Europe ===
+            -- France (+33, 0033 OU format national 01-09)
+            -- Ajout de |^0[1-9] pour capturer 06, 07, 01, etc.
+            WHEN REGEXP_CONTAINS(REPLACE(REPLACE(CAST(`phone number` AS STRING), ' ', ''), '.', ''), r'^(?:\+|00)33|^0[1-9]') THEN 'France'
+            
             -- === ZONE 1: Amérique du Nord (NANP) ===
             -- Attention: USA/Canada partagent +1. On teste d'abord les îles spécifiques si besoin, sinon on groupe.
             WHEN REGEXP_CONTAINS(REPLACE(REPLACE(CAST(`phone number` AS STRING), ' ', ''), '.', ''), r'^(?:\+|00)1') THEN 'USA/Canada'
@@ -86,11 +91,11 @@ renamed as (
             WHEN REGEXP_CONTAINS(REPLACE(REPLACE(CAST(`phone number` AS STRING), ' ', ''), '.', ''), r'^(?:\+|00)298') THEN 'Îles Féroé'
             WHEN REGEXP_CONTAINS(REPLACE(REPLACE(CAST(`phone number` AS STRING), ' ', ''), '.', ''), r'^(?:\+|00)299') THEN 'Groenland'
 
-            -- === ZONE 3 & 4: Europe ===
+            -- === SUITE EUROPE ===
             WHEN REGEXP_CONTAINS(REPLACE(REPLACE(CAST(`phone number` AS STRING), ' ', ''), '.', ''), r'^(?:\+|00)30') THEN 'Grèce'
             WHEN REGEXP_CONTAINS(REPLACE(REPLACE(CAST(`phone number` AS STRING), ' ', ''), '.', ''), r'^(?:\+|00)31') THEN 'Pays-Bas'
             WHEN REGEXP_CONTAINS(REPLACE(REPLACE(CAST(`phone number` AS STRING), ' ', ''), '.', ''), r'^(?:\+|00)32') THEN 'Belgique'
-            WHEN REGEXP_CONTAINS(REPLACE(REPLACE(CAST(`phone number` AS STRING), ' ', ''), '.', ''), r'^(?:\+|00)33') THEN 'France'
+            -- France déplacé en haut pour priorité
             WHEN REGEXP_CONTAINS(REPLACE(REPLACE(CAST(`phone number` AS STRING), ' ', ''), '.', ''), r'^(?:\+|00)34') THEN 'Espagne'
             WHEN REGEXP_CONTAINS(REPLACE(REPLACE(CAST(`phone number` AS STRING), ' ', ''), '.', ''), r'^(?:\+|00)350') THEN 'Gibraltar'
             WHEN REGEXP_CONTAINS(REPLACE(REPLACE(CAST(`phone number` AS STRING), ' ', ''), '.', ''), r'^(?:\+|00)351') THEN 'Portugal'
