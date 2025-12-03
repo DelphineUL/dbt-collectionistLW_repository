@@ -38,10 +38,10 @@ renamed as (
         -- Nettoyage et conversion en FLOAT (Budget par nuit)
         SAFE_CAST(REGEXP_REPLACE(REPLACE(CAST(`deal - budget per night` AS STRING), ',', '.'), r'[^0-9.-]', '') AS FLOAT64) as budget_per_night,
         
-        -- Conversion de win_lost en Texte ('Win' ou 'Lost')
+        -- Conversion de win_lost en booléen (True si 'won', False sinon)
         CASE 
-            WHEN LOWER(CAST(`deal - deal stage macro` AS STRING)) LIKE '%won%' THEN 'Win' 
-            ELSE 'Lost' 
+            WHEN LOWER(CAST(`deal - deal stage macro` AS STRING)) LIKE '%won%' THEN TRUE 
+            ELSE FALSE 
         END as win_lost,
 
         `deal - deal stage` as deal_stage,
